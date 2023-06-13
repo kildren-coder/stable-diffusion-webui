@@ -196,12 +196,20 @@ class EmbeddingDatabase:
     def load_from_dir(self, embdir):
         if not os.path.isdir(embdir.path):
             return
+        
+        
         str.strip(embdir.path)
         print("load_from_dir:",embdir.path)
         folder_name = os.path.basename(embdir.path)
         print("folder_name:",folder_name)
+       
+        if folder_name.startswith('.'):
+            print("skip!!!!!!!!!!!!!!!")
+            return
+        
         for root, _, fns in os.walk(embdir.path, followlinks=True):
             print("root:", root)
+            fns = [fn for fn in fns if not fn.startswith('.')]
             print("fns:", fns)
             
             if os.path.basename(root) == folder_name:
