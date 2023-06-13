@@ -196,8 +196,13 @@ class EmbeddingDatabase:
     def load_from_dir(self, embdir):
         if not os.path.isdir(embdir.path):
             return
-
+        str.strip(embdir.path)
+        folder_name = os.path.basename(embdir.path)
+        print(folder_name)
         for root, _, fns in os.walk(embdir.path, followlinks=True):
+            if os.path.basename(root) == folder_name:
+                continue
+            
             for fn in fns:
                 try:
                     fullfn = os.path.join(root, fn)
