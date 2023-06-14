@@ -22,7 +22,7 @@ run_extension_installer = launch_utils.run_extension_installer
 prepare_environment = launch_utils.prepare_environment
 configure_for_tests = launch_utils.configure_for_tests
 start = launch_utils.start
-
+commandline_args = os.environ.get('COMMANDLINE_ARGS', "--xformers")
 
 def main():
     if not args.skip_prepare_environment:
